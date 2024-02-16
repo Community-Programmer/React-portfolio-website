@@ -1,0 +1,202 @@
+.about-section{
+    display: flex;
+    align-items: center;
+    height: calc(100vh - 65px);
+    padding: 20px;
+}
+
+.about-section p{
+    font-size: 17px;
+    line-height: 1.6rem;
+}
+
+.about-left-section{
+    text-align: center;
+    border: 1px solid #715693;
+    box-shadow: 5px 5px 5px #857599;
+    border-radius: 20px;
+    width: 40%;
+    padding: 20px;
+}
+
+.user-image img{
+    display: block;
+    width: 50%;
+    margin: auto;
+    border-radius: 50%;
+    border: 0.8rem solid #BAA2D2;
+}
+
+.about-left-section h1{
+    margin: 10px;
+    color: #715693;
+}
+
+.about-left-section span{
+    font-size: 1.2rem;
+    font-weight: bolder;
+    color: rgb(150, 149, 149);
+
+}
+.about-left-section p{
+    margin-top: 10px;
+}
+.about-icons{
+    margin: 20px;
+}
+
+.about-icons i{
+    color: #715693;
+    margin: 6px;
+}
+
+.about-cta-button{
+    background-color: #BAA2D2;
+    font-weight: bold;
+    border: 2px solid #715693;
+    padding: 10px 20px;
+    font-size: 16px;
+    cursor: pointer;
+    border-radius: 5px;
+    margin-top: 10px;
+    width: 80%;
+}
+
+.about-right-section{
+    width: 60%;
+    padding: 20px;
+}
+
+.about-right-section h1{
+    color: #715693;
+    margin: 8px 0;
+}
+
+.progress {
+    width: 100%;
+    background-color: #ddd;
+  }
+
+  .tab1{
+    display: flex;
+  }
+
+  .skill-info{
+    width: 50%;
+  }
+
+  .skill-progress{
+    width: 50%;
+  }
+  
+  .skill-bar {
+    text-align: right;
+    padding-top: 7px;
+    padding-bottom: 7px;
+    color: white;
+  }
+  
+  .html {
+    width: 90%; 
+    background-color: #715693;
+    animation: skillAnimation 1.5s ease-out;
+}
+
+  .cp {
+    width: 85%; 
+    background-color: #715693;
+    animation: skillAnimation 1.5s ease-out;
+}
+
+  .css {
+    width: 80%; 
+    background-color: #715693;
+    animation: skillAnimation 1.5s ease-out;
+}
+
+  .javascript {
+    width: 65%; 
+    background-color: #715693;
+    animation: skillAnimation 1.5s ease-out;
+}
+
+  .nodejs {
+    width: 60%; 
+    background-color: #715693;
+    animation: skillAnimation 1.5s ease-out;
+}
+
+
+  @keyframes skillAnimation {
+    from {
+        width: 0;
+    }
+}
+
+
+  .general-info{
+    margin-top: 8px;
+    display: flex;
+    gap: 20px;
+  }
+
+  .general-info i{
+    color: #715693;
+    margin-right: 5px;
+  }
+  .tab2{
+    display: flex;
+    gap: 30px;
+  }
+
+  .tab2 i{
+    color: #715693;
+    margin-right: 5px;
+  }
+
+
+  
+@media screen and (max-width: 1024px){
+    .about-section{
+        height: auto;
+    }
+
+
+}
+
+  @media screen and (max-width: 768px){
+
+    .about-section{
+        flex-direction: column;
+        padding: 10px;
+    }
+    .about-left-section{
+        width: 100%;
+        padding: 10px;
+    }
+
+    .about-right-section{
+        width: 100%;
+        padding: 10px;
+    }
+
+    .general-info{
+        margin-top: 15px;
+    }
+  }
+
+
+  @media screen and (max-width: 674px){
+    .tab1{
+        flex-direction: column;
+        gap: 10px;
+    }
+
+    .skill-info{
+        width: 100%;
+    }
+
+    .skill-progress{
+        width: 100%;
+    }
+  }

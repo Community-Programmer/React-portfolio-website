@@ -1,0 +1,158 @@
+@import url('https://fonts.googleapis.com/css2?family=Montserrat&display=swap');
+
+.main-section{
+    font-family: 'calibri';
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+    height: calc(100vh - 65px);
+}
+
+.info h1{
+    font-size: 4rem;
+    color: #715693;
+}
+
+.Typewriter__wrapper{
+    font-size: 2.5rem;
+    font-weight: bold;
+}
+
+
+.info{
+    animation: 1s ease-out 0s 1 slideInLeft;
+    margin: 50px;
+    /* border: 2px solid; */
+    width: 70%;
+}
+
+.info p{
+    font-size: 1.2rem;
+    margin-top: 10px;
+}
+
+
+.social-links{
+    display: flex;
+    gap: 10px;
+    margin-top: 25px;
+}
+
+.social-links a{
+  color: #7B609D;
+}
+
+.cta-button {
+  background-color: #BAA2D2;
+  color: black;
+  border: none;
+  padding: 10px 20px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 5px;
+  margin-top: 20px;
+}
+
+.journey-btn{
+  display: flex;
+  justify-content: center;
+}
+
+.journey-btn button{
+  margin: 0 0 5px 0;
+}
+
+.custom-shape-divider-bottom-1705068149 {
+  position: absolute;
+  bottom: 0;
+  left: 0;
+  width: 100%;
+  overflow: hidden;
+  line-height: 0;
+  transform: rotate(180deg);
+}
+
+.custom-shape-divider-bottom-1705068149 svg {
+  position: relative;
+  display: block;
+  width: calc(100% + 1.3px);
+  height: 110px;
+}
+
+.custom-shape-divider-bottom-1705068149 .shape-fill {
+  fill: #857599;
+}
+
+.technologies{
+  width: 90%;
+  display: flex;
+  justify-content: center;
+  margin: auto;
+  gap: 20px;
+  flex-wrap: wrap;
+}
+
+.projects{
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  gap: 10px;
+  
+}
+
+
+
+@media screen and (max-width: 1024px){
+  .user-img img{
+    width: 100%;
+    display: block;
+    margin: auto;
+    
+  }
+
+  .main-section{
+    flex-direction: column-reverse;
+    padding: 20px;
+    height: auto;
+  }
+  
+  .custom-shape-divider-bottom-1705068149{
+    display: none;
+  }
+
+}
+
+
+@media  screen and (max-width: 768px){
+  .info{
+    width: 100%;
+    margin-bottom: 0;
+  }
+
+  .info p{
+    font-size: 1.1rem;
+}
+
+  .info h1{
+    font-size: 3rem;
+  }
+
+  .Typewriter__wrapper{
+    font-size: 1.8rem;
+    font-weight: bold;
+   }
+
+}
+
+
+@media screen and (max-width: 600px) {
+
+  .journey-btn{
+    justify-content: flex-start;
+   }
+
+   .journey-btn button{
+        margin-left: 25px;
+    }
+
+}

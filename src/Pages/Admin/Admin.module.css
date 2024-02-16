@@ -1,0 +1,46 @@
+.loginContainer{
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    gap: 1rem;
+    height: 100vh;
+}
+
+.loginContainer h1{
+    color: #715693;
+}
+
+.loginBox{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+    border: 1px solid #857599;
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+.loginBox label{
+    font-weight: bold;
+    line-height: 2rem;
+}
+
+.loginBox label input{
+    display: block;
+    padding: 0.5rem ;
+    width: 350px;
+}
+
+.loginBox button{
+    background-color: #857599;
+    border: none;
+    font-weight: bold;
+    padding: 1rem;
+    border-radius: 1rem;
+    width: 100%;
+}
+
+.loginBox button:hover{
+    background-color: #C9B2D1;
+    cursor: pointer;
+}

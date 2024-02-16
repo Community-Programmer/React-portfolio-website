@@ -1,0 +1,57 @@
+.project-card{
+    display: flex;
+    align-items: center;
+    margin-bottom: 10px;
+    padding: 10px;
+    border: 1px solid grey;
+    border-radius: 10px;
+    width: 95%;
+    box-shadow: 5px 5px 5px #857599;
+}
+
+
+
+.project-image{
+    width: 45%;
+    aspect-ratio: 4/2;
+    object-fit: contain;
+    border: 1px solid grey;
+    border-radius: 0.5rem;
+    padding: 0.2rem;
+
+}
+
+.project-info{
+    padding: 10px;
+}
+
+.technologies-used{
+    display: flex;
+    align-items: center;
+    flex-wrap: wrap;
+}
+
+@media screen and (max-width: 768px){
+.project-card{
+    flex-direction: column;
+    padding: 10px;
+  }
+
+  .project-image{
+    width: 100%;
+  }
+
+  .project-info{
+    padding: 5px;
+    margin-top: 8px;
+    line-height: 25px;
+  }
+
+  
+
+  .technologies-used{
+    flex-direction: column;
+    align-items: normal;
+
+  }
+}

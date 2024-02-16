@@ -1,0 +1,59 @@
+.alert {
+    position: absolute;
+    left: 20px;
+    bottom: 20px;
+    width: 20%;
+    padding: 10px 0;
+    border: 0.5px solid;
+    border-radius: 5px;
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+  }
+
+  .alert p{
+    margin: 0.5rem;
+    font-size: 1.1rem;
+  }
+  
+  .alert-success {
+    background-color: #a9f1ab;
+    color: black;
+  }
+
+  .alert-info {
+    background-color: #24a0ed;
+    color: black;
+  }
+  
+  .alert-error {
+    background-color: #e07b73;
+    color: black;
+  }
+  
+  .close-button {
+    position: absolute;
+    right: 5px;
+    top: 5px;
+    border: none;
+    background: none;
+    font-size: 20px;
+    cursor: pointer;
+    color: inherit;
+  }
+  
+ 
+@media screen and (max-width: 768px){
+    .alert{
+        position: fixed;
+        top: 105px;
+        left: 50%;
+        transform: translate(-50%, -50%);
+        bottom: auto;
+        width: 95%;
+    }
+
+    .alert p{
+      font-size: 1rem;
+    }
+}
