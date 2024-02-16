@@ -8,7 +8,6 @@ import Skills from "../skills/Skills";
 import Technologies from "../../Components/Technologies/Technologies";
 import axios from "axios";
 import ProjectCard from "../../Components/ProjectCard/ProjectCard";
-import Footer from "../../Components/Footer/Footer";
 import Timeline from "../../Components/Timeline/Timeline";
 import API_BASE_URL from "../../config/config";
 
