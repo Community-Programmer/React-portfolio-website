@@ -1,85 +1,24 @@
-import React, { useEffect, useState } from "react";
+import React from "react";
 import Typewriter from "typewriter-effect";
 import user from "../../Assets/Images/user.png";
 import "./Home.css";
-import { Link } from "react-router-dom";
+import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
 import Skills from "../skills/Skills";
 import Technologies from "../../Components/Technologies/Technologies";
-import axios from "axios";
 import ProjectCard from "../../Components/ProjectCard/ProjectCard";
 import Timeline from "../../Components/Timeline/Timeline";
-import API_BASE_URL from "../../config/config";
+import { useSelector } from "react-redux";
 
 const Home = () => {
-  const [techData, setTechData] = useState([]);
-  const [projectData, setProjectData] = useState([]);
-  const [timelineData, setTimelineData] = useState([]);
-
-  // useEffect hook to make the API request when the component mounts
-  useEffect(() => {
-    const fetchTechnologiesData = async () => {
-      try {
-        // Make an Axios GET request to your API endpoint
-        const response = await axios.get(
-          `${API_BASE_URL}/data/gettechnologies`
-        );
-
-        // Set the fetched data to the state
-        setTechData(response.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-    fetchTechnologiesData();
-
-    const fetchProjectData = async () => {
-      try {
-        // Make an Axios GET request to your API endpoint
-        const response = await axios.get(
-          `${API_BASE_URL}/data/latestproject`
-        );
-
-        // Set the fetched data to the state
-        setProjectData(response.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-    fetchProjectData();
-
-    
-
-    const fetchTimeline = async () => {
-      try {
-        // Make an Axios GET request to your API endpoint
-        const response = await axios.get(
-          `${API_BASE_URL}/data/hometimeline`
-        );
-
-        // Set the fetched data to the state
-        setTimelineData(response.data);
-      } catch (error) {
-        console.error("Error fetching data:", error);
-      }
-    };
-    fetchTimeline();
-  
-
-  }, []);
-
-  
-
-
-  console.log(projectData)
+  const navigate = useNavigate();
+  const data = useSelector((state) => state.projectData.data);
+  const status = useSelector((state) => state.projectData.status);
 
   return (
     <>
       <section className="main-section">
-        <div
-          data-aos="zoom-in" data-aos-duration="1500"
-          className="info"
-        >
+        <div data-aos="zoom-in" data-aos-duration="1500" className="info">
           <h1>Sarthak Patel</h1>
           <Typewriter
             options={{
@@ -119,18 +58,18 @@ const Home = () => {
               <i class="fa-solid fa-envelope fa-2xl" />
             </Link>
           </div>
-          <Link to='/projects'>
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-            className="cta-button"
-          >
-            See Projects
-          </motion.button>
+          <Link to="/projects">
+            <motion.button
+              whileHover={{ scale: 1.1 }}
+              whileTap={{ scale: 0.9 }}
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.5 }}
+              className="cta-button"
+            >
+              See Projects
+            </motion.button>
           </Link>
         </div>
 
@@ -169,69 +108,87 @@ const Home = () => {
 
       <Skills />
 
-      <h1 className="heading">Technologies I know</h1>
-      <div className="technologies">
-        {techData.map((data, index) => {
-          return (
-            <Technologies
-              key={index}
-              link={data.link}
-              imagePath={data.imagePath}
-              alt={data.alt}
-            />
-          );
-        })}
+      {status === "idle" ? (
+        <>
+          <h1 className="heading">Technologies I know</h1>
+          <div className="technologies">
+            {data.technologiesData.map((data, index) => {
+              return (
+                <Technologies
+                  key={index}
+                  link={data.link}
+                  imagePath={data.imagePath}
+                  alt={data.alt}
+                />
+              );
+            })}
+          </div>
+        </>
+      ) : (
+        ""
+      )}
+
+      {status === "idle" ? (
+        <>
+          <h1 className="heading">My Latest Projects</h1>
+          <div className="projects">
+            {data.projectData
+              .filter((project) => project.latest)
+              .map((data, index) => {
+                return (
+                  <ProjectCard
+                    key={index}
+                    projectImage={data.projectImage}
+                    title={data.title}
+                    description={data.description}
+                    TechnologiesUsed={data.technologiesUsed}
+                    startDate={data.startDate}
+                    endDate={data.endDate}
+                    projectLink={data.projectLink}
+                    isAvailable={data.isAvailable}
+                  />
+                );
+              })}
+          </div>
+        </>
+      ) : (
+        ""
+      )}
+
+      {status === "idle" ? (
+        <>
+          <h1 className="heading">My Journey</h1>
+          {data.timelineData.slice(0, 4).map((data, index) => {
+            return (
+              <Timeline
+                key={index}
+                title={data.title}
+                year={data.year}
+                listItems={data.listItems}
+                position={data.position}
+              />
+            );
+          })}
+        </>
+      ) : (
+        ""
+      )}
+      <div className="journey-btn">
+        <motion.button
+          whileHover={{ scale: 1.1 }}
+          whileTap={{ scale: 0.9 }}
+          initial={{ opacity: 0 }}
+          animate={{ opacity: 1 }}
+          exit={{ opacity: 0 }}
+          transition={{ duration: 0.5 }}
+          className="cta-button journery-btn "
+          onClick={() => {
+            navigate("/timeline");
+          }}
+        >
+          See Full Journey
+        </motion.button>
       </div>
-
-      <h1 className="heading">My Latest Projects</h1>
-      <div className="projects">
-        {projectData.map((data, index) => {
-          return (
-            <ProjectCard
-              key={index}
-              projectImage={data.projectImage}
-              title={data.title}
-              description={data.description}
-              TechnologiesUsed={data.technologiesUsed}
-              startDate={data.startDate}
-              endDate={data.endDate}
-              projectLink={data.projectLink}
-              isAvailable={data.isAvailable}
-            />
-          );
-        })}
-      </div>
-
-      <h1 className="heading">My Journey</h1>
-      {timelineData.map((data, index) => {
-          return (
-            <Timeline
-            key={index}
-            title={data.title}
-            year={data.year}
-            listItems={data.listItems}
-            position={data.position}
-
-
-            />
-          );
-        })}
-        <div className="journey-btn">
-    
-          <motion.button
-            whileHover={{ scale: 1.1 }}
-            whileTap={{ scale: 0.9 }}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            exit={{ opacity: 0 }}
-            transition={{ duration: 0.5 }}
-            className="cta-button journery-btn "
-            onClick={()=>{window.open('/timeline')}}
-          >
-            See Full Journey
-          </motion.button>
-          
-        </div>
     </>
   );
 };
