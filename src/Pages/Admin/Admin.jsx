@@ -1,9 +1,36 @@
-import React, { useRef } from 'react'
+import React, { useEffect, useRef } from 'react'
 import styles from './Admin.module.css'
+import { useDispatch, useSelector } from 'react-redux'
+import { authAdmin} from '../../Store/authSlice';
+import { useNavigate } from 'react-router-dom';
 
 const Admin = () => {
+
+  const dispatch = useDispatch();
+
+  const handleSubmit = (event)=>{
+    event.preventDefault();
+
+    const userData = new FormData(event.target);
+    const userDataObj = Object.fromEntries(userData);
+    dispatch(authAdmin(userDataObj));
+  }
     
-    const checkRef = useRef()
+  const navigate = useNavigate();
+
+    
+  const auth = useSelector((state) => state.auth.authorized);
+
+  useEffect(()=>{
+    if(auth){
+        navigate('/dashboard');
+    }
+
+  },[auth,navigate])
+
+
+
+    const checkRef = useRef();
 
     const showpass = ()=>{
      
@@ -17,7 +44,7 @@ const Admin = () => {
     <>
     <div className={styles.loginContainer}>
         <h1>Admin Panel</h1>
-        <form className={styles.loginBox}>
+        <form className={styles.loginBox} onSubmit={handleSubmit}>
         <label htmlFor='username'>Username
         <input type='text' name='username'/>
         </label>

@@ -3,8 +3,8 @@ import ProjectCard from "../../Components/ProjectCard/ProjectCard";
 import { useSelector } from "react-redux";
 
 const Project = () => {
-  const data = useSelector((state) => state.projectData.data);
-  const status = useSelector((state) => state.projectData.status);
+  const data = useSelector((state) => state.portfolioData.data);
+  const status = useSelector((state) => state.portfolioData.status);
 
   return (
     <>

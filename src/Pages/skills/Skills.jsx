@@ -4,8 +4,8 @@ import Skillcard from "../../Components/SkillCard/Skillcard";
 import { useSelector } from "react-redux";
 
 const Skills = () => {
-  const data = useSelector((state) => state.projectData.data);
-  const status = useSelector((state) => state.projectData.status);
+  const data = useSelector((state) => state.portfolioData.data);
+  const status = useSelector((state) => state.portfolioData.status);
 
   return (
     <>

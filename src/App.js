@@ -14,9 +14,11 @@ import Layout from "./Layout/Layout";
 import { useDispatch, useSelector } from "react-redux";
 import { fetchPortfolioData } from "./Store/DataSlice";
 import Loader from "./Components/Loader/Loader";
+import Dashboard from "./Pages/Dashboard/Dashboard";
+import { authorization } from "./Store/authSlice";
 
 function App() {
-  const status = useSelector((state) => state.projectData.status);
+  const status = useSelector((state) => state.portfolioData.status);
 
   const dispatch = useDispatch();
 
@@ -24,6 +26,7 @@ function App() {
   useEffect(() => {
     
     dispatch(fetchPortfolioData());
+    dispatch(authorization())
 
     AOS.init({
       offset: 200,
@@ -50,6 +53,8 @@ function App() {
 
           <Routes>
             <Route path="/admin" element={<Admin />} />
+            <Route path="/dashboard" element={<Dashboard />} >
+            </Route>
           </Routes>
         </>
       )}

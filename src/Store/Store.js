@@ -1,11 +1,13 @@
 import { configureStore } from "@reduxjs/toolkit";
 
 import DataReducer from '../Store/DataSlice'
+import AuthReducer from '../Store/authSlice'
 
 
 const store = configureStore({
     reducer: {
-        projectData: DataReducer
+        portfolioData: DataReducer,
+        auth: AuthReducer
 
     }
 })
