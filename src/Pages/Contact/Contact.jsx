@@ -54,14 +54,14 @@ const Contact = () => {
           </h1>
           <div className="contact-info">
             <p>
-              <i class="fa-solid fa-envelope" />
+              <i className="fa-solid fa-envelope" />
               sarthakpatel230204@gmail.com
             </p>
             <p>
-              <i class="fa-solid fa-phone"></i>+91 80812 39465
+              <i className="fa-solid fa-phone"></i>+91 80812 39465
             </p>
             <p>
-              <i class="fa-solid fa-location-dot"></i>Bengaluru, Karnataka
+              <i className="fa-solid fa-location-dot"></i>Bengaluru, Karnataka
             </p>
           </div>
           <div className="social-links">
@@ -73,11 +73,11 @@ const Contact = () => {
             </Link>
 
             <Link to="https://wa.me/918081239465" target="blank">
-              <i class="fa-brands fa-whatsapp fa-2xl" />
+              <i className="fa-brands fa-whatsapp fa-2xl" />
             </Link>
 
             <Link to="https://www.instagram.com/sarthak_patel23" target="blank">
-              <i class="fa-brands fa-instagram fa-2xl" />
+              <i className="fa-brands fa-instagram fa-2xl" />
             </Link>
           </div>
         </div>

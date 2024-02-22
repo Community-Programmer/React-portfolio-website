@@ -30,11 +30,11 @@ const About = () => {
             </Link>
 
             <Link to="https://wa.me/918081239465">
-              <i class="fa-brands fa-whatsapp fa-2xl" />
+              <i className="fa-brands fa-whatsapp fa-2xl" />
             </Link>
 
             <Link to="mailto:sarthakpatel230204@gmail.com">
-              <i class="fa-solid fa-envelope fa-2xl" />
+              <i className="fa-solid fa-envelope fa-2xl" />
             </Link>
           </div>
           <Link to="/contact">
@@ -80,34 +80,34 @@ const About = () => {
             <div data-aos="zoom-in"
      data-aos-duration="1000" className="skill-progress">
               <p>HTML</p>
-              <div class="progress">
-                <div class="skill-bar html"></div>
+              <div className="progress">
+                <div className="skill-bar html"></div>
               </div>
               <p>C/C++</p>
-              <div class="progress">
-                <div class="skill-bar cp"></div>
+              <div className="progress">
+                <div className="skill-bar cp"></div>
               </div>
               <p>CSS</p>
-              <div class="progress">
-                <div class="skill-bar css"></div>
+              <div className="progress">
+                <div className="skill-bar css"></div>
               </div>
               <p>JAVASCRIPT</p>
-              <div class="progress">
-                <div class="skill-bar javascript"></div>
+              <div className="progress">
+                <div className="skill-bar javascript"></div>
               </div>
               <p>NODEJS</p>
-              <div class="progress">
-                <div class="skill-bar nodejs"></div>
+              <div className="progress">
+                <div className="skill-bar nodejs"></div>
               </div>
             </div>
           </div>
           <div className="general-info">
             <p>
-              <i class="fa-solid fa-calendar-days " />
+              <i className="fa-solid fa-calendar-days " />
               23 February 2004
             </p>
             <p>
-              <i class="fa-solid fa-location-dot" />
+              <i className="fa-solid fa-location-dot" />
               Bengaluru,Karnataka
             </p>
           </div>
@@ -115,16 +115,16 @@ const About = () => {
           <h1>Hobbies & Interest</h1>
           <div className="tab2">
             <p>
-              <i class="fa-solid fa-check-double"></i>Travelling
+              <i className="fa-solid fa-check-double"></i>Travelling
             </p>
             <p>
-              <i class="fa-solid fa-check-double"></i>Gaming
+              <i className="fa-solid fa-check-double"></i>Gaming
             </p>
             <p>
-              <i class="fa-solid fa-check-double"></i>Reading
+              <i className="fa-solid fa-check-double"></i>Reading
             </p>
             <p>
-              <i class="fa-solid fa-check-double"></i>Coding
+              <i className="fa-solid fa-check-double"></i>Coding
             </p>
           </div>
         </div>

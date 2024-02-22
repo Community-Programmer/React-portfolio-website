@@ -6,8 +6,8 @@ const Footer = () => {
   return (
     <>
       <footer>
-        <div class="footer-content">
-          <div class="footer-section about">
+        <div className="footer-content">
+          <div className="footer-section about">
             <h3>About Me</h3>
             <p>
               I'm passionate about technology and enjoy working on various
@@ -15,12 +15,12 @@ const Footer = () => {
               contributions to open source, and more
             </p>
           </div>
-          <div class="footer-section contact">
+          <div className="footer-section contact">
             <h3>Contact Us</h3>
             <p>Email: sarthakpatel230204@gmail.com</p>
             <p>Phone: +91 80812 39465</p>
           </div>
-          <div class="footer-section links">
+          <div className="footer-section links">
             <h3>Quick Links</h3>
             <ul>
               <li>
@@ -46,16 +46,16 @@ const Footer = () => {
             </Link>
 
             <Link to="https://wa.me/918081239465">
-              <i class="fa-brands fa-whatsapp fa-2xl" />
+              <i className="fa-brands fa-whatsapp fa-2xl" />
             </Link>
 
             <Link to="https://www.instagram.com/sarthak_patel23" target="blank">
-              <i class="fa-brands fa-instagram fa-2xl" />
+              <i className="fa-brands fa-instagram fa-2xl" />
             </Link>
           </div>
           </div>
       
-        <div class="footer-bottom">
+        <div className="footer-bottom">
           <p>&copy; 2024 Sarthak Patel. All rights reserved</p>
         </div>
       </footer>
