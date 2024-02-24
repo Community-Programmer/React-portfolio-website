@@ -9,7 +9,6 @@ const Dashboard = () => {
 
     
   const auth = useSelector((state) => state.auth.authorized);
-  console.log(auth)
 
   useEffect(()=>{
     if(!auth){

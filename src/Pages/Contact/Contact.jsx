@@ -34,8 +34,6 @@ const Contact = () => {
         },
       });
   
-      console.log(response.data);
-  
       if (response.status === 200) {
         showAlert('Message sent!', 'success');
         setinfo({ name: "", email: "", message: "" });
