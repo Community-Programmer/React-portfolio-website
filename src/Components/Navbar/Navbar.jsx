@@ -39,16 +39,21 @@ const Navbar = () => {
           </div>
         
           <button
-            className="btn"
+            className="nav-btn"
             onClick={()=>{window.open('https://community-programmer.blogspot.com/','_blank')}}
           >
             Blog
           </button>
+
+          <div className="close-icon">
+          <li onClick={toggleNavbar} className="fa fa-xmark fa-xl"></li>
+        </div>
+
         </ul>
 
-        <div className="bar-icon">
+       {!isOpen && <div className="bar-icon">
           <li onClick={toggleNavbar} className="fa fa-bars fa-xl"></li>
-        </div>
+        </div> } 
       </nav>
       <Outlet/>
     </>
