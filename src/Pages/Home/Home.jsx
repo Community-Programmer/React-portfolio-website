@@ -42,15 +42,15 @@ const Home = () => {
           </p>
 
           <div className="social-links">
-            <Link to="https://github.com/Community-Programmer">
+            <Link to="https://github.com/Community-Programmer" target="_blank">
               <i className="fa-brands fa-github fa-2xl" />
             </Link>
 
-            <Link to="https://www.linkedin.com/in/sarthak-patel23">
+            <Link to="https://www.linkedin.com/in/sarthak-patel23" target="_blank">
               <i className="fa-brands fa-linkedin fa-2xl" />
             </Link>
 
-            <Link to="https://wa.me/918081239465">
+            <Link to="https://wa.me/918081239465" target="_blank">
               <i className="fa-brands fa-whatsapp fa-2xl" />
             </Link>
 
