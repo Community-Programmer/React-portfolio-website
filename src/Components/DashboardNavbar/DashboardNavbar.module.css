@@ -1,0 +1,40 @@
+.dashboardNavbar{
+    display: flex;
+}
+
+.sideNavbar{
+    padding: 0.5rem;
+    width: 30vh;
+    border: 1px solid;
+    height: 100vh;
+    display: flex;
+    flex-direction: column;
+    gap: 1.5rem;
+}
+
+.Navlinks{
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+
+}
+
+.Navlinks a{
+    text-decoration: none;
+    color: black;
+}
+
+.logout{
+    display: flex;
+    flex-direction: column;
+    height: 100%;
+    align-items: center;
+    justify-content: flex-end;
+    color: rgb(219, 72, 72);
+}
+
+.logout span:hover{
+    cursor: pointer;
+    color: red
+
+}
