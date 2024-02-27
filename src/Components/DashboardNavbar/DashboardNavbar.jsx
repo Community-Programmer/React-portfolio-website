@@ -1,8 +1,27 @@
-import React from 'react'
+import React, { useEffect } from 'react'
 import styles from './DashboardNavbar.module.css'
-import { Link, Outlet } from 'react-router-dom'
+import { Link, Outlet, useNavigate } from 'react-router-dom'
+import { useDispatch, useSelector } from 'react-redux'
+import { logoutAdmin } from '../../Store/authSlice'
 
 const DashboardNavbar = () => {
+      const navigate =useNavigate();
+      const dispatch = useDispatch();
+
+      const logout = async()=>{
+            dispatch(logoutAdmin());
+            navigate('/admin');
+      }
+    
+      const auth = useSelector((state) => state.auth.authorized);
+    
+      useEffect(()=>{
+        if(!auth){
+            navigate('/admin');
+        }
+    
+      },[auth,navigate])
+
   return (
     <>
     <div className={styles.dashboardNavbar}>
@@ -26,7 +45,7 @@ const DashboardNavbar = () => {
         </Link>
        </ul>
        <div className={styles.logout}>
-        <span>
+        <span onClick={logout}>
         <i className="fa-solid fa-right-from-bracket"/>
        Logout
         </span>

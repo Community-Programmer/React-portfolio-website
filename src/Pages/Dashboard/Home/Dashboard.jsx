@@ -1,22 +1,7 @@
-import React, { useEffect } from 'react'
-import { useSelector } from 'react-redux';
-import { useNavigate } from 'react-router-dom';
+import React from 'react'
 
 
 const Dashboard = () => {
-
-    const navigate = useNavigate();
-
-    
-  const auth = useSelector((state) => state.auth.authorized);
-
-  useEffect(()=>{
-    if(!auth){
-        navigate('/admin');
-    }
-
-  },[auth,navigate])
-
 
   return (
     <>

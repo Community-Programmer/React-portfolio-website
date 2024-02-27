@@ -18,6 +18,10 @@ const authSlice = createSlice({
             state.authorized = true;
             state.admin = action.payload.data.admin;
         })
+        .addCase(logoutAdmin.fulfilled, (state,action)=>{
+            state.authorized = false;
+            state.admin = '';
+        })
         
     }
 
@@ -34,13 +38,22 @@ export const authAdmin = createAsyncThunk('auth/login', async (loginData)=>{
 
 })
 
+export const logoutAdmin = createAsyncThunk('auth/logout', async ()=>{
+
+    const response = await axios.get(`${API_BASE_URL}/admin/logout`,{
+        withCredentials: true
+    });
+
+    return response.data;
+
+})
+
 
 export const authorization = createAsyncThunk('auth/verify', async ()=>{
 
     const response = await axios.get(`${API_BASE_URL}/admin/verify`,{
         withCredentials: true
       });
-      console.log(response.data)
     return response.data;
 
 })

@@ -1,0 +1,37 @@
+
+.dashboardContainer{
+    width: 100%;
+}
+
+
+/* Css for manage technologies page  */
+
+.technologiesContainer{
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    padding: 1rem;
+}
+
+.technologiesContainer div{
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    border: 1px solid;
+    gap: 1rem;
+    padding: 1rem;
+    border-radius: 1rem;
+}
+
+.technologiesContainer div i{
+    color: rgb(228, 94, 94);
+    cursor: pointer;
+}
+
+.technologiesContainer img{
+    width: 60px;
+    aspect-ratio: 1/1;
+    object-fit: contain;
+
+}
