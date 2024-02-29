@@ -12,7 +12,7 @@
     border-radius: 0.5rem;
     border: 1px solid;
     font-weight: bold;
-    margin-top: 1rem;
+    margin: 1rem 0;
     background-color: rgb(160, 235, 160);
     cursor: pointer;
 }
@@ -50,6 +50,43 @@
 
 }
 
+/* Css for manage timeline page  */
+.timelineContainer{
+    height: 80vh;
+    overflow: auto;
+}
+
+.timelineBox{
+    position: relative;
+}
+
+.icons-box{
+    display: flex;
+    gap: 0.5rem;
+}
+
+.icons-box i:first-child{
+    color: rgb(40, 40, 175);
+    cursor: pointer;
+}
+.icons-box i:last-child{
+    color: rgb(197, 53, 53);
+    cursor: pointer;
+}
+
+
+.leftIcon{
+    position: absolute;
+    bottom: 15px;
+    left: 50px;
+}
+
+.rightIcon{
+    position: absolute;
+    bottom: 15px;
+    right: 50px;
+}
+
 /* Dashboard Page Forms style  */
 
 .dashboardForms{
@@ -60,6 +97,7 @@
     height: 100vh;
     background-color: rgba(0, 0, 0, 0.9);
     display: none;
+    z-index: 9999;
 }
 
 .dashboardForms.OpenModal{
@@ -76,7 +114,6 @@
     border-radius: 0.5rem;
     display: flex;
     flex-direction: column;
-    align-items: center;
 }
 
 .dashboardForms label{
@@ -106,3 +143,65 @@
     top: 5%;
     cursor: pointer;
 }
+
+
+/* Toggle Switch Css  */
+
+.switch {
+    position: relative;
+    width: 60px;
+    height: 34px;
+  }
+  
+  .switch input { 
+    opacity: 0;
+    width: 0;
+    height: 0;
+  }
+  
+  .slider {
+    position: absolute;
+    cursor: pointer;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-color: #ccc;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  .slider:before {
+    position: absolute;
+    content: "";
+    height: 26px;
+    width: 26px;
+    left: 4px;
+    bottom: 4px;
+    background-color: white;
+    -webkit-transition: .4s;
+    transition: .4s;
+  }
+  
+  input:checked + .slider {
+    background-color: #857599;
+  }
+  
+  input:focus + .slider {
+    box-shadow: 0 0 1px #857599;
+  }
+  
+  input:checked + .slider:before {
+    -webkit-transform: translateX(26px);
+    -ms-transform: translateX(26px);
+    transform: translateX(26px);
+  }
+  
+  /* Rounded sliders */
+  .slider.round {
+    border-radius: 34px;
+  }
+  
+  .slider.round:before {
+    border-radius: 50%;
+  }

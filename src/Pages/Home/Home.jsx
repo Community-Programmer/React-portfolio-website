@@ -166,6 +166,7 @@ const Home = () => {
                 year={data.year}
                 listItems={data.listItems}
                 position={data.position}
+                showAnimations={true}
               />
             );
           })}

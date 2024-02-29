@@ -1,20 +1,22 @@
 import React, { useState } from 'react'
-import { useSelector } from 'react-redux';
-import '../Dashboard.css'
+import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import API_BASE_URL from '../../../config/config';
+import { fetchPortfolioData } from '../../../Store/DataSlice';
 
 const ManageTechnologies = () => {
 
   const data = useSelector((state) => state.portfolioData.data);
   const status = useSelector((state) => state.portfolioData.status);
 
+  const dispatch = useDispatch();
   const [isModalOpen, setModalOpen] = useState(false);
 
   const removeTechnologies= async(id)=>{
     await axios.delete(`${API_BASE_URL}/data/deletetechnologies/${id}`,{
       withCredentials: true
   });
+  refreshData();
   }
 
   const handleSubmit =async(event)=>{
@@ -30,15 +32,22 @@ const ManageTechnologies = () => {
       setModalOpen(false)
 
     }
+    refreshData();
 
   }
+
+  const refreshData = () =>{
+    
+    dispatch(fetchPortfolioData());
+  }
+
   return (
     <>
     <div className='dashboardContainer'>
     <h1>Manage Technologies</h1>
 
     <button onClick={()=>setModalOpen(!isModalOpen)} className="dashboardBtn">
-    <i class="fa-solid fa-plus"/> Add Technologies
+    <i class="fa-solid fa-plus"/> Add New Technologies
     </button>
 
     <div className={`dashboardForms ${isModalOpen ? 'OpenModal':''}`}>
