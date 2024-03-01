@@ -11,7 +11,7 @@ const Timelines = () => {
       {status === "idle" ? (
         <>
           <h1 className="heading">My Journey</h1>
-          {data.timelineData.map((data, index) => {
+          {data.timelineData.filter((timeline) => timeline.isVisible).map((data, index) => {
             return (
               <Timeline
                 key={index}

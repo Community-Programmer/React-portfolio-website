@@ -158,7 +158,7 @@ const Home = () => {
       {status === "idle" ? (
         <>
           <h1 className="heading">My Journey</h1>
-          {data.timelineData.slice(0, 4).map((data, index) => {
+          {data.timelineData.filter((timeline) => timeline.isVisible).slice(0, 4).map((data, index) => {
             return (
               <Timeline
                 key={index}

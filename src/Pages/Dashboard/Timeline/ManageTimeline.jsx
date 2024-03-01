@@ -21,23 +21,35 @@ const ManageTimeline = () => {
     isVisible: true,
   });
 
-
-//  Function to manage form input data 
+  //  Function to manage form input data
 
   const handleChange = (event) => {
-    const { name, value } = event.target;
+    const { name, value, type } = event.target;
 
-    setFormData({
-      ...formData,
-      [name]: value,
-    });
+    if (type === "checkbox") {
+      setIsChecked(!isChecked);
+      setFormData({ ...formData, isVisible: !isChecked });
+    } else {
+      setFormData({
+        ...formData,
+        [name]: value,
+      });
+    }
   };
 
-  // Fuction for addNewTimeline Button 
+  // Fuction for addNewTimeline Button
 
   const addTimeline = () => {
+    setFormData({
+      title: "",
+      year: "",
+      listItems: "",
+      position: "",
+      isVisible: true,
+    });
     setModalOpen(!isModalOpen);
     setIsEdit(false);
+    setIsChecked(true);
   };
 
   // Set form with exisiting data from redux store
@@ -48,6 +60,7 @@ const ManageTimeline = () => {
     data.timelineData
       .filter((data) => data._id === id)
       .map((data) => {
+        setIsChecked(data.isVisible);
         return setFormData({
           ...data,
           listItems: data.listItems.map((item) => item.text).join(" ~ "),
@@ -94,7 +107,6 @@ const ManageTimeline = () => {
     refreshData();
   };
 
-  
   // Function to delete timelineData from database
 
   const removeTimeline = async (id) => {
@@ -172,7 +184,7 @@ const ManageTimeline = () => {
                   id="isVisible"
                   type="checkbox"
                   checked={isChecked}
-                  onChange={() => setIsChecked(!isChecked)}
+                  onChange={handleChange}
                 />
                 <span className="slider round"></span>
               </div>
@@ -193,9 +205,8 @@ const ManageTimeline = () => {
             <>
               {data.timelineData.map((data, index) => {
                 return (
-                  <div className="timelineBox">
+                  <div key={index} className="timelineBox">
                     <Timeline
-                      key={index}
                       title={data.title}
                       year={data.year}
                       listItems={data.listItems}
