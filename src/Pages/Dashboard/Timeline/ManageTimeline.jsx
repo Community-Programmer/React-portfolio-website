@@ -11,6 +11,7 @@ const ManageTimeline = () => {
   const dispatch = useDispatch();
   const [isModalOpen, setModalOpen] = useState(false);
   const [isChecked, setIsChecked] = useState(true);
+  const [isEdit, setIsEdit] = useState(false);
 
   const [formData, setFormData] = useState({
     title: "",
@@ -20,38 +21,46 @@ const ManageTimeline = () => {
     isVisible: true,
   });
 
-  const removeTimeline = async (id) => {
-    await axios.delete(`${API_BASE_URL}/data/deletetimeline/${id}`, {
-      withCredentials: true,
+
+//  Function to manage form input data 
+
+  const handleChange = (event) => {
+    const { name, value } = event.target;
+
+    setFormData({
+      ...formData,
+      [name]: value,
     });
-    refreshData();
   };
 
-  const handleChange = (e) => {
-    const { name, value, type } = e.target;
-    if (name === "listItems") {
-      const listItems = value.split(",").map((part) => part.trim());
-      const listItemsArray = listItems.map((text) => ({ text: text }));
-      setFormData({
-        ...formData,
-        listItems: listItemsArray,
-      });
-    } else if (type === "checkbox") {
-      setIsChecked(!isChecked);
-      setFormData({ ...formData, isVisible: !isChecked });
-    } else {
-      setFormData({
-        ...formData,
-        [name]: value,
-      });
-    }
+  // Fuction for addNewTimeline Button 
+
+  const addTimeline = () => {
+    setModalOpen(!isModalOpen);
+    setIsEdit(false);
   };
 
-  const handleSubmit = async (event) => {
+  // Set form with exisiting data from redux store
+
+  const editTimeline = async (id) => {
+    setModalOpen(!isModalOpen);
+    setIsEdit(true);
+    data.timelineData
+      .filter((data) => data._id === id)
+      .map((data) => {
+        return setFormData({
+          ...data,
+          listItems: data.listItems.map((item) => item.text).join(" ~ "),
+        });
+      });
+  };
+
+  // Function to modify timelineData in database
+
+  const modifyTimeline = async (event) => {
     event.preventDefault();
-    console.log(formData);
-    const response = await axios.post(
-      `${API_BASE_URL}/data/addtimeline`,
+    const response = await axios.put(
+      `${API_BASE_URL}/data/edittimeline/${formData._id}`,
       formData,
       {
         withCredentials: true,
@@ -65,24 +74,58 @@ const ManageTimeline = () => {
     refreshData();
   };
 
+  // Function to add new timelineData in database
+
+  const addNewTimeline = async (event) => {
+    event.preventDefault();
+
+    const response = await axios.post(
+      `${API_BASE_URL}/data/addtimeline`,
+      formData,
+      {
+        withCredentials: true,
+      }
+    );
+
+    if (response.status === 200) {
+      setModalOpen(false);
+    }
+
+    refreshData();
+  };
+
+  
+  // Function to delete timelineData from database
+
+  const removeTimeline = async (id) => {
+    await axios.delete(`${API_BASE_URL}/data/deletetimeline/${id}`, {
+      withCredentials: true,
+    });
+    refreshData();
+  };
+
+  // function to refresh the redux store portfolio data
   const refreshData = () => {
     dispatch(fetchPortfolioData());
   };
+
+  // Set button click action according to module
+  // Modify or Add New Timeline
+
+  const handleButtonClick = isEdit ? modifyTimeline : addNewTimeline;
+  const buttonText = isEdit ? "Modify Timeline" : "Add Timeline";
 
   return (
     <>
       <div className="dashboardContainer">
         <h1>Manage Timeline</h1>
 
-        <button
-          onClick={() => setModalOpen(!isModalOpen)}
-          className="dashboardBtn"
-        >
+        <button onClick={addTimeline} className="dashboardBtn">
           <i class="fa-solid fa-plus" /> Add New Timeline
         </button>
 
         <div className={`dashboardForms ${isModalOpen ? "OpenModal" : ""}`}>
-          <form onSubmit={handleSubmit}>
+          <form>
             <label htmlFor="title">
               Title
               <input
@@ -104,10 +147,10 @@ const ManageTimeline = () => {
               />
             </label>
             <label htmlFor="listItems">
-              Description (use comma separated values)
+              Description (use ~ separated values for different li)
               <input
                 id="listItems"
-                value={formData.listItems.map((item) => item.text).join(", ")}
+                value={formData.listItems}
                 onChange={handleChange}
                 type="text"
                 name="listItems"
@@ -129,13 +172,15 @@ const ManageTimeline = () => {
                   id="isVisible"
                   type="checkbox"
                   checked={isChecked}
-                  onChange={handleChange}
+                  onChange={() => setIsChecked(!isChecked)}
                 />
                 <span className="slider round"></span>
               </div>
             </label>
 
-            <button type="submit">Submit</button>
+            <button onClick={handleButtonClick} type="submit">
+              {buttonText}
+            </button>
           </form>
           <i
             onClick={() => setModalOpen(!isModalOpen)}
@@ -162,7 +207,12 @@ const ManageTimeline = () => {
                         data.position === "left" ? "leftIcon" : "rightIcon"
                       }`}
                     >
-                      <i className="fa-solid fa-pen-to-square" />
+                      <i
+                        onClick={() => {
+                          editTimeline(data._id);
+                        }}
+                        className="fa-solid fa-pen-to-square"
+                      />
                       <i
                         onClick={() => {
                           removeTimeline(data._id);
