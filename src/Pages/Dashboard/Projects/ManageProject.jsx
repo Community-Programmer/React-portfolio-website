@@ -4,6 +4,7 @@ import { useDispatch, useSelector } from "react-redux";
 import { fetchPortfolioData } from "../../../Store/DataSlice";
 import API_BASE_URL from "../../../config/config";
 import ProjectCard from "../../../Components/ProjectCard/ProjectCard";
+import AlertModal from "../../../Components/AlertModal/AlertModal";
 
 const ManageProject = () => {
   const dispatch = useDispatch();
@@ -12,6 +13,8 @@ const ManageProject = () => {
 
   const [isModalOpen, setModalOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
+  const [isAlert, setIsAlert] = useState(false);
+
   const [formData, setFormData] = useState({
     projectImage: "",
     title: "",
@@ -119,10 +122,17 @@ const ManageProject = () => {
     refreshData();
   };
 
-  // Function to delete ProjectData in database
+  // Function to delete ProjectData from database
 
-  const deleteProject = async (id) => {
-    await axios.delete(`${API_BASE_URL}/data/deleteproject/${id}`, {
+  const [itemId,setItemId] =useState('');
+
+  const OpenAlert = (id) =>{
+    setIsAlert(!isAlert);
+    setItemId(id);
+  }
+
+  const deleteProject = async () => {
+    await axios.delete(`${API_BASE_URL}/data/deleteproject/${itemId}`, {
       withCredentials: true,
     });
 
@@ -143,6 +153,7 @@ const ManageProject = () => {
   return (
     <>
       <div className="dashboardContainer">
+      {isAlert && <AlertModal setIsAlert = {setIsAlert} removeItem = {deleteProject}/>}
         <div className="dashboardHeader">
           <h1>Manage Projects</h1>
           <button onClick={addProject} className="dashboardBtn">
@@ -305,7 +316,7 @@ const ManageProject = () => {
                           className="fa-solid fa-pen-to-square"
                         />
                         <i
-                          onClick={() => deleteProject(data._id)}
+                          onClick={() => OpenAlert(data._id)}
                           className="fa-solid fa-trash"
                         />
                       </div>

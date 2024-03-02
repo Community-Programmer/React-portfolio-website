@@ -3,6 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import axios from 'axios';
 import API_BASE_URL from '../../../config/config';
 import { fetchPortfolioData } from '../../../Store/DataSlice';
+import AlertModal from '../../../Components/AlertModal/AlertModal';
 
 const ManageTechnologies = () => {
 
@@ -11,13 +12,8 @@ const ManageTechnologies = () => {
 
   const dispatch = useDispatch();
   const [isModalOpen, setModalOpen] = useState(false);
+  const [isAlert, setIsAlert] = useState(false);
 
-  const removeTechnologies= async(id)=>{
-    await axios.delete(`${API_BASE_URL}/data/deletetechnologies/${id}`,{
-      withCredentials: true
-  });
-  refreshData();
-  }
 
   const handleSubmit =async(event)=>{
     event.preventDefault();
@@ -35,6 +31,22 @@ const ManageTechnologies = () => {
     refreshData();
 
   }
+  // Function to delete technologiesData from database
+
+  const [itemId,setItemId] =useState('');
+
+  const OpenAlert = (id) =>{
+    setIsAlert(!isAlert);
+    setItemId(id);
+  }
+
+  const removeTechnologies= async()=>{
+    await axios.delete(`${API_BASE_URL}/data/deletetechnologies/${itemId}`,{
+      withCredentials: true
+  });
+  refreshData();
+  }
+
 
   const refreshData = () =>{
     
@@ -44,8 +56,8 @@ const ManageTechnologies = () => {
   return (
     <>
     <div className='dashboardContainer'>
+    {isAlert && <AlertModal setIsAlert = {setIsAlert} removeItem = {removeTechnologies}/>}
     <h1>Manage Technologies</h1>
-
     <button onClick={()=>setModalOpen(!isModalOpen)} className="dashboardBtn">
     <i className="fa-solid fa-plus"/> Add New Technologies
     </button>
@@ -76,7 +88,7 @@ const ManageTechnologies = () => {
               return (
                 <div key={index}>
                   <img src={data.imagePath} alt={data.alt} />
-                  <i onClick={()=>removeTechnologies(data._id)} className="fa-solid fa-trash"/>
+                  <i onClick={()=>OpenAlert(data._id)} className="fa-solid fa-trash"/>
                 </div>
                
               );

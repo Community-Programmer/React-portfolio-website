@@ -4,6 +4,7 @@ import { fetchPortfolioData } from "../../../Store/DataSlice";
 import Skillcard from "../../../Components/SkillCard/Skillcard";
 import axios from "axios";
 import API_BASE_URL from "../../../config/config";
+import AlertModal from "../../../Components/AlertModal/AlertModal";
 
 const ManageSkill = () => {
 
@@ -14,6 +15,7 @@ const ManageSkill = () => {
 
   const [isModalOpen, setModalOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
+  const [isAlert, setIsAlert] = useState(false);
 
   const [formData, setFormData] = useState({
     svgData: "",
@@ -62,15 +64,17 @@ const ManageSkill = () => {
 
     event.preventDefault();
 
-    const response = axios.post(`${API_BASE_URL}/data/addskill`,formData,{
+    const response = await axios.post(`${API_BASE_URL}/data/addskill`,formData,{
       withCredentials: true,
     });
 
     if (response.status === 201) {
       setModalOpen(false);
     };
-
+    
     refreshData();
+
+    
 
   }
 
@@ -89,14 +93,22 @@ const ManageSkill = () => {
       if (response.status === 201) {
         setModalOpen(false);
       }
-  
+      
       refreshData();
     };
+
+  // Function to delete SkillData from database
   
+  const [itemId,setItemId] =useState('');
 
-  const deleteSkil = async(id) => {
+  const OpenAlert = (id) =>{
+    setIsAlert(!isAlert);
+    setItemId(id);
+  }
 
-    await axios.delete(`${API_BASE_URL}/data/deleteskill/${id}`,{
+  const deleteSkil = async() => {
+
+    await axios.delete(`${API_BASE_URL}/data/deleteskill/${itemId}`,{
       withCredentials: true,
     });
 
@@ -116,6 +128,8 @@ const ManageSkill = () => {
   return (
     <>
       <div className="dashboardContainer">
+        
+      {isAlert && <AlertModal setIsAlert = {setIsAlert} removeItem = {deleteSkil}/>}
         <div className="dashboardHeader">
           <h1>Manage Skills</h1>
           <button onClick={addSkill} className="dashboardBtn">
@@ -198,7 +212,7 @@ const ManageSkill = () => {
                 />
                 <div className="icons-box">
                   <i onClick={() => editSkill(skill._id)}className="fa-solid fa-pen-to-square"/>
-                  <i onClick={() => deleteSkil(skill._id)}className="fa-solid fa-trash"/>
+                  <i onClick={() => OpenAlert(skill._id)}className="fa-solid fa-trash"/>
                       </div>
                 </div>
               );

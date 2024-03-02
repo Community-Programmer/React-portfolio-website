@@ -4,6 +4,7 @@ import Timeline from "../../../Components/Timeline/Timeline";
 import axios from "axios";
 import API_BASE_URL from "../../../config/config";
 import { fetchPortfolioData } from "../../../Store/DataSlice";
+import AlertModal from "../../../Components/AlertModal/AlertModal";
 
 const ManageTimeline = () => {
   const dispatch = useDispatch();
@@ -12,6 +13,7 @@ const ManageTimeline = () => {
 
   const [isModalOpen, setModalOpen] = useState(false);
   const [isEdit, setIsEdit] = useState(false);
+  const [isAlert, setIsAlert] = useState(false);
 
   const [formData, setFormData] = useState({
     title: "",
@@ -106,12 +108,19 @@ const ManageTimeline = () => {
 
   // Function to delete timelineData from database
 
-  const removeTimeline = async (id) => {
-    await axios.delete(`${API_BASE_URL}/data/deletetimeline/${id}`, {
+  const [itemId,setItemId] =useState('');
+  const OpenAlert = (id) =>{
+    setIsAlert(!isAlert);
+    setItemId(id);
+  }
+
+  const removeTimeline = async () => {
+    await axios.delete(`${API_BASE_URL}/data/deletetimeline/${itemId}`, {
       withCredentials: true,
     });
     refreshData();
   };
+
 
   // function to refresh the redux store portfolio data
   const refreshData = () => {
@@ -127,6 +136,7 @@ const ManageTimeline = () => {
   return (
     <>
       <div className="dashboardContainer">
+      {isAlert && <AlertModal setIsAlert = {setIsAlert} removeItem = {removeTimeline}/>}
         <div className="dashboardHeader">
           <h1>Manage Timeline</h1>
           <button onClick={addTimeline} className="dashboardBtn">
@@ -226,7 +236,7 @@ const ManageTimeline = () => {
                       />
                       <i
                         onClick={() => {
-                          removeTimeline(data._id);
+                          OpenAlert(data._id);
                         }}
                         className="fa-solid fa-trash"
                       />
