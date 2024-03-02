@@ -28,7 +28,7 @@ const ProjectCard = (props) => {
 
   return (
     <>
-      <div className="project-card" >
+      <div data-aos={`${props.showAnimations ? 'fade-right':'' }`} data-aos-duration="1000" className="project-card" >
         <img className="project-image" src={props.projectImage} alt="project" />
         <div className="project-info">
           <h3>{props.title}</h3>
@@ -42,6 +42,7 @@ const ProjectCard = (props) => {
                   key={index}
                   link={data.link}
                   imagePath={data.imagePath}
+                  showAnimations={props.showAnimations}
                   width="45"
                   height="45"
                 />

@@ -2,8 +2,20 @@
 .dashboardContainer{
     width: 100%;
     padding: 0 1rem;
+    height: 100vh;
+    overflow: auto;
 }
 
+.dashboardHeader{
+    position: fixed;
+    width: 100%;
+    background-color: #fff;
+    z-index: 9999;
+}
+
+.dashboardSubContainer{
+    margin-top: 130px;
+}
 
 /* Dashboard Button */
 
@@ -75,17 +87,41 @@
 }
 
 
-.leftIcon{
+.timelineBox .leftIcon{
     position: absolute;
     bottom: 15px;
     left: 50px;
 }
 
-.rightIcon{
+.timelineBox  .rightIcon{
     position: absolute;
     bottom: 15px;
     right: 50px;
 }
+
+
+/* Css for manage project page  */
+
+.labelBox{
+    display: flex;
+    gap: 1rem;
+}
+
+.projectBox{
+    position: relative;
+    border: 2px saddlebrown;
+}
+
+.projectBox .icons-box{
+    position: absolute;
+    bottom: 20px;
+    right: 80px;
+}
+
+
+
+
+
 
 /* Dashboard Page Forms style  */
 
@@ -124,7 +160,7 @@
 .dashboardForms form input{
     display: block;
     padding: 0.5rem ;
-    width: 400px;
+    width: 100%;
 }
 
 .dashboardForms button{

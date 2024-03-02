@@ -6,11 +6,11 @@ import API_BASE_URL from "../../../config/config";
 import { fetchPortfolioData } from "../../../Store/DataSlice";
 
 const ManageTimeline = () => {
+  const dispatch = useDispatch();
   const data = useSelector((state) => state.portfolioData.data);
   const status = useSelector((state) => state.portfolioData.status);
-  const dispatch = useDispatch();
+
   const [isModalOpen, setModalOpen] = useState(false);
-  const [isChecked, setIsChecked] = useState(true);
   const [isEdit, setIsEdit] = useState(false);
 
   const [formData, setFormData] = useState({
@@ -27,8 +27,7 @@ const ManageTimeline = () => {
     const { name, value, type } = event.target;
 
     if (type === "checkbox") {
-      setIsChecked(!isChecked);
-      setFormData({ ...formData, isVisible: !isChecked });
+      setFormData({ ...formData, isVisible: !formData.isVisible });
     } else {
       setFormData({
         ...formData,
@@ -49,7 +48,6 @@ const ManageTimeline = () => {
     });
     setModalOpen(!isModalOpen);
     setIsEdit(false);
-    setIsChecked(true);
   };
 
   // Set form with exisiting data from redux store
@@ -60,7 +58,6 @@ const ManageTimeline = () => {
     data.timelineData
       .filter((data) => data._id === id)
       .map((data) => {
-        setIsChecked(data.isVisible);
         return setFormData({
           ...data,
           listItems: data.listItems.map((item) => item.text).join(" ~ "),
@@ -121,7 +118,7 @@ const ManageTimeline = () => {
     dispatch(fetchPortfolioData());
   };
 
-  // Set button click action according to module
+  // Set button click action according to mode
   // Modify or Add New Timeline
 
   const handleButtonClick = isEdit ? modifyTimeline : addNewTimeline;
@@ -130,11 +127,12 @@ const ManageTimeline = () => {
   return (
     <>
       <div className="dashboardContainer">
-        <h1>Manage Timeline</h1>
-
-        <button onClick={addTimeline} className="dashboardBtn">
-          <i class="fa-solid fa-plus" /> Add New Timeline
-        </button>
+        <div className="dashboardHeader">
+          <h1>Manage Timeline</h1>
+          <button onClick={addTimeline} className="dashboardBtn">
+            <i class="fa-solid fa-plus" /> Add New Timeline
+          </button>
+        </div>
 
         <div className={`dashboardForms ${isModalOpen ? "OpenModal" : ""}`}>
           <form>
@@ -171,6 +169,7 @@ const ManageTimeline = () => {
             <label htmlFor="position">
               Position
               <input
+                id="position"
                 type="text"
                 value={formData.position}
                 onChange={handleChange}
@@ -183,7 +182,7 @@ const ManageTimeline = () => {
                 <input
                   id="isVisible"
                   type="checkbox"
-                  checked={isChecked}
+                  checked={formData.isVisible}
                   onChange={handleChange}
                 />
                 <span className="slider round"></span>
@@ -200,7 +199,8 @@ const ManageTimeline = () => {
           />
         </div>
 
-        <div className="timelineContainer">
+        <div className="dashboardSubContainer">
+          <h1 className="heading">My Journey</h1>
           {status === "idle" ? (
             <>
               {data.timelineData.map((data, index) => {

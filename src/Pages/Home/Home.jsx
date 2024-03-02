@@ -118,6 +118,7 @@ const Home = () => {
                   key={index}
                   link={data.link}
                   imagePath={data.imagePath}
+                  showAnimations={true}
                   alt={data.alt}
                 />
               );
@@ -133,7 +134,7 @@ const Home = () => {
           <h1 className="heading">My Latest Projects</h1>
           <div className="projects">
             {data.projectData
-              .filter((project) => project.latest)
+              .filter((project) => project.isLatest && project.isVisible)
               .map((data, index) => {
                 return (
                   <ProjectCard
@@ -146,6 +147,7 @@ const Home = () => {
                     endDate={data.endDate}
                     projectLink={data.projectLink}
                     isAvailable={data.isAvailable}
+                    showAnimations={true}
                   />
                 );
               })}

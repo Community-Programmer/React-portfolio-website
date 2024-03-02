@@ -34,7 +34,7 @@ function App() {
     dispatch(authorization())
 
     AOS.init({
-      offset: 200,
+      offset: 170
     });
 
   }, [dispatch]);

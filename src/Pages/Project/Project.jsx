@@ -12,7 +12,7 @@ const Project = () => {
         <>
           <h1 className="heading">My Projects</h1>
           <div className="projects">
-            {data.projectData.map((data, index) => {
+            {data.projectData.filter((project) => project.isVisible).map((data, index) => {
               return (
                 <ProjectCard
                   key={index}
@@ -24,6 +24,7 @@ const Project = () => {
                   endDate={data.endDate}
                   projectLink={data.projectLink}
                   isAvailable={data.isAvailable}
+                  showAnimations={true}
                 />
               );
             })}
