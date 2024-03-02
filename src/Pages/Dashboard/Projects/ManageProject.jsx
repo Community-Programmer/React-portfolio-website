@@ -146,7 +146,7 @@ const ManageProject = () => {
         <div className="dashboardHeader">
           <h1>Manage Projects</h1>
           <button onClick={addProject} className="dashboardBtn">
-            <i class="fa-solid fa-plus" /> Add New Project
+            <i className="fa-solid fa-plus" /> Add New Project
           </button>
         </div>
 

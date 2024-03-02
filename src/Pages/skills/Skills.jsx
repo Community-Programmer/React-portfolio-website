@@ -13,13 +13,14 @@ const Skills = () => {
         <>
           <h1 className="heading">Skills</h1>
           <div className="skills">
-            {data.skillData.map((skill, index) => {
+            {data.skillData.filter((skill) =>  skill.isVisible).map((skill, index) => {
               return (
                 <Skillcard
                   key={index}
                   svg={skill.svgData}
                   title={skill.title}
                   description={skill.description}
+                  showAnimations ={true}
                 />
               );
             })}

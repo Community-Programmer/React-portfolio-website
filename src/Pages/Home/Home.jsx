@@ -4,11 +4,11 @@ import user from "../../Assets/Images/user.png";
 import "./Home.css";
 import { Link, useNavigate } from "react-router-dom";
 import { motion } from "framer-motion";
-import Skills from "../skills/Skills";
 import Technologies from "../../Components/Technologies/Technologies";
 import ProjectCard from "../../Components/ProjectCard/ProjectCard";
 import Timeline from "../../Components/Timeline/Timeline";
 import { useSelector } from "react-redux";
+import Skillcard from "../../Components/SkillCard/Skillcard";
 
 const Home = () => {
   const navigate = useNavigate();
@@ -106,7 +106,26 @@ const Home = () => {
         </div>
       </section>
 
-      <Skills />
+      {status === "idle" ? (
+        <>
+          <h1 className="heading">Skills</h1>
+          <div className="skills">
+            {data.skillData.filter((skill) =>  skill.isVisible).map((skill, index) => {
+              return (
+                <Skillcard
+                  key={index}
+                  svg={skill.svgData}
+                  title={skill.title}
+                  description={skill.description}
+                  showAnimations ={true}
+                />
+              );
+            })}
+          </div>
+        </>
+      ) : (
+        ""
+      )}
 
       {status === "idle" ? (
         <>

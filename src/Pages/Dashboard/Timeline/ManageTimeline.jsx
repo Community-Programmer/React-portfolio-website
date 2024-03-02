@@ -130,7 +130,7 @@ const ManageTimeline = () => {
         <div className="dashboardHeader">
           <h1>Manage Timeline</h1>
           <button onClick={addTimeline} className="dashboardBtn">
-            <i class="fa-solid fa-plus" /> Add New Timeline
+            <i className="fa-solid fa-plus" /> Add New Timeline
           </button>
         </div>
 

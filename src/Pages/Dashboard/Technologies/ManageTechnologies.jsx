@@ -47,7 +47,7 @@ const ManageTechnologies = () => {
     <h1>Manage Technologies</h1>
 
     <button onClick={()=>setModalOpen(!isModalOpen)} className="dashboardBtn">
-    <i class="fa-solid fa-plus"/> Add New Technologies
+    <i className="fa-solid fa-plus"/> Add New Technologies
     </button>
 
     <div className={`dashboardForms ${isModalOpen ? 'OpenModal':''}`}>
