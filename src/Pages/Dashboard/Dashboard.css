@@ -10,7 +10,7 @@
     position: fixed;
     width: 100%;
     background-color: #fff;
-    z-index: 9999;
+    z-index: 2;
 }
 
 .dashboardSubContainer{
@@ -102,6 +102,11 @@
 
 /* Css for manage project page  */
 
+.projectBox{
+    display: flex;
+    justify-content: center;
+}
+
 .labelBox{
     display: flex;
     gap: 1rem;
@@ -114,7 +119,7 @@
 .projectBox .icons-box{
     position: absolute;
     bottom: 20px;
-    right: 80px;
+    right: 50px;
 }
 
 
@@ -256,4 +261,19 @@
   
   .slider.round:before {
     border-radius: 50%;
+  }
+
+
+  /* Dashboard responsiveness for snall devices  */
+
+
+  @media screen and (max-width: 768px) {
+
+    .timelineBox .leftIcon{
+        position: absolute;
+        bottom: 15px;
+        left: unset;
+        right: 50px;
+    }
+
   }

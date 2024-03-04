@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import styles from './DashboardNavbar.module.css'
 import { Link, Outlet, useNavigate } from 'react-router-dom'
 import { useDispatch, useSelector } from 'react-redux'
@@ -7,6 +7,12 @@ import { logoutAdmin } from '../../Store/authSlice'
 const DashboardNavbar = () => {
       const navigate =useNavigate();
       const dispatch = useDispatch();
+
+      const [isOpen, setIsOpen] = useState(false);
+
+      const toggleNavbar = () => {
+        setIsOpen(!isOpen);
+      };
 
       const logout = async()=>{
             dispatch(logoutAdmin());
@@ -25,22 +31,24 @@ const DashboardNavbar = () => {
   return (
     <>
     <div className={styles.dashboardNavbar}>
-      <div className={styles.sideNavbar}>
+      <div className={styles.navBars}><i onClick={toggleNavbar} className="fa-solid fa-bars fa-xl"/></div>
+       
+      <div className={`${styles.sideNavbar} ${isOpen ? styles.active : ''}`}>
        <h3 >Admin Dashboard</h3>
        <ul className={styles.Navlinks}>
-       <Link to="/dashboard">
+       <Link onClick={toggleNavbar} to="/dashboard">
               <li className="fa fa-home" /> Home
         </Link>
-        <Link to="/dashboard/skills">
+        <Link onClick={toggleNavbar} to="/dashboard/skills">
               <li className="fa fa-wrench" />Manage Skills
         </Link>
-        <Link to="/dashboard/projects">
+        <Link onClick={toggleNavbar} to="/dashboard/projects">
               <li className="fa fa-file" /> Manage Projects
         </Link>
-        <Link to="/dashboard/technologies">
+        <Link onClick={toggleNavbar} to="/dashboard/technologies">
               <li className="fa fa-globe" /> Manage Technologies
         </Link>
-        <Link to="/dashboard/timelines">
+        <Link onClick={toggleNavbar} to="/dashboard/timelines">
               <li className="fa fa-timeline" /> Manage Timeline
         </Link>
        </ul>
@@ -50,6 +58,9 @@ const DashboardNavbar = () => {
        Logout
         </span>
        
+       </div>
+       <div className={styles.closeIcon}>
+       <i onClick={toggleNavbar} className="fa-solid fa-x fa-xl"/>
        </div>
     </div>
     <Outlet/>

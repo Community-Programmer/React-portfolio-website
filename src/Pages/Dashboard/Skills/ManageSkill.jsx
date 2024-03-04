@@ -74,8 +74,6 @@ const ManageSkill = () => {
     
     refreshData();
 
-    
-
   }
 
     // Function to modify skillData in database

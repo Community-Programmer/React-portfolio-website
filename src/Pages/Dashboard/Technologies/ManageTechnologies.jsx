@@ -57,10 +57,12 @@ const ManageTechnologies = () => {
     <>
     <div className='dashboardContainer'>
     {isAlert && <AlertModal setIsAlert = {setIsAlert} removeItem = {removeTechnologies}/>}
+    <div className="dashboardHeader">
     <h1>Manage Technologies</h1>
     <button onClick={()=>setModalOpen(!isModalOpen)} className="dashboardBtn">
     <i className="fa-solid fa-plus"/> Add New Technologies
     </button>
+    </div>
 
     <div className={`dashboardForms ${isModalOpen ? 'OpenModal':''}`}>
       <form onSubmit={handleSubmit}>
@@ -81,7 +83,7 @@ const ManageTechnologies = () => {
       </form>
       <i onClick={()=>setModalOpen(!isModalOpen)} className="fa-solid fa-x"/>
     </div>
-
+    <div className="dashboardSubContainer">
     {status === "idle" ? (
     <div className='technologiesContainer'>
     {data.technologiesData.map((data, index) => {
@@ -94,6 +96,7 @@ const ManageTechnologies = () => {
               );
             })}
     </div>):''}
+    </div>
     </div>
     </>
   )
