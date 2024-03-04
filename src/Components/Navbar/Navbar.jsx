@@ -34,7 +34,7 @@ const Navbar = () => {
               <li className="fa fa-user" /> About me
             </Link>
             <Link to="/contact" onClick={toggleNavbar}>
-              <li className="fa fa-address-card" /> Contact Us
+              <li className="fa fa-address-card" /> Contact me
             </Link>
           </div>
         
